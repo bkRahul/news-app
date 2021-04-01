@@ -1,64 +1,64 @@
 export const getArticleTime = (data, headline) => {
-  let d = new Date(data);
-  let time,
-    date,
-    month,
-    year = "";
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+	let d = new Date(data)
+	let time,
+		date,
+		month,
+		year = ''
+	let months = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December',
+	]
 
-  if (d.getDate() === new Date().getDate()) {
-    date = "Today";
-  } else {
-    date = `${d.getDate()}  ${months[d.getMonth()]}`;
-  }
+	if (d.getDate() === new Date().getDate()) {
+		date = 'Today'
+	} else {
+		date = `${d.getDate()}  ${months[d.getMonth()]}`
+	}
 
-  time = `${d.getHours()} : ${d.getMinutes()}`;
+	time = `${d.getHours()} : ${d.getMinutes()}`
 
-  month = months[d.getMonth()];
-  year = d.getFullYear();
+	month = months[d.getMonth()]
+	year = d.getFullYear()
 
-  if (!!headline) {
-    return `${date} • ${time}`;
-  } else {
-    return `${month} ${date}, ${year}`;
-  }
-};
+	if (!!headline) {
+		return `${date} • ${time}`
+	} else {
+		return `${month} ${date}, ${year}`
+	}
+}
 
-export const getNonEmptyFields = (data) => {
-  return data.map(
-    ({
-      url,
-      author,
-      content,
-      description,
-      publishedAt,
-      title,
-      urlToImage,
-      source,
-    }) => {
-      author = author || source.name;
-      return {
-        url,
-        author,
-        content,
-        description,
-        publishedAt,
-        title,
-        urlToImage,
-      };
-    }
-  );
-};
+export const getNonEmptyFields = data => {
+	return data.map(
+		({
+			url,
+			author,
+			content,
+			description,
+			publishedAt,
+			title,
+			urlToImage,
+			source,
+		}) => {
+			author = author || source.name
+			return {
+				url,
+				author,
+				content,
+				description,
+				publishedAt,
+				title,
+				urlToImage,
+			}
+		},
+	)
+}
