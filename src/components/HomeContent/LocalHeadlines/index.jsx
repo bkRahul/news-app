@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { withGridLayout as WithGridLayout } from '../../../hoc/GridLayout/withGridLayout'
+import { withSectionWrap as WithSectionWrap } from '../../../hoc/SectionWrap/withSectionWrap'
 import { getLocalHeadlines, getLocation } from '../../../services/newsApi'
 import { getNonEmptyFields } from '../../../utils'
 import { LocalHeadline } from '../../Article/LocalHeadline'
@@ -23,9 +24,9 @@ export const LocalHeadlines = () => {
 			})
 	}, [])
 	return (
-		<>
+		<WithSectionWrap withBg>
 			<CategoryTitle
-				title='Top Local Picks'
+				title='Top Local News'
 				description="Get the latest news on what's happening in your country"
 			/>
 			<WithGridLayout>
@@ -35,10 +36,13 @@ export const LocalHeadlines = () => {
 							.slice(0, 7)
 							.map(article => {
 								return (
-									<LocalHeadline {...article} key={article.title} />
+									<LocalHeadline
+										{...article}
+										key={article.title}
+									/>
 								)
 							})}
 			</WithGridLayout>
-		</>
+		</WithSectionWrap>
 	)
 }
