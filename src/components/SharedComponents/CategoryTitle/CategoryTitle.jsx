@@ -4,12 +4,12 @@ import styled from 'styled-components'
 const TitleWrapper = styled.div`
 	text-align: center;
 	width: 100%;
-	margin-bottom: 3em;
+	padding-bottom: 2em;
 `
 
 const Title = styled.div`
 	color: #33353b;
-	font-size: 2.8em;
+	font-size: 2em;
 	font-weight: 600;
 	position: relative;
 	margin-bottom: 23px;

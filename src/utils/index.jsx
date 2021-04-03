@@ -49,7 +49,7 @@ export const getNonEmptyFields = data => {
 			urlToImage,
 			source,
 		}) => {
-			author = author || source.name
+			author = source.name || author
 			return {
 				url,
 				author,

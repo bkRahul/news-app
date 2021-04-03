@@ -4,6 +4,7 @@ import { getArticleTime } from '../../../utils'
 
 const Card = styled.div`
 	display: flex;
+	box-shadow: 0px 10px 25px -13px rgb(0 0 0 / 10%);
 	flex-direction: column;
 	border-radius: 0.25rem;
 	background-color: #fff;
@@ -34,10 +35,10 @@ const CardTitle = styled.a`
 const CardText = styled.p`
 	font-size: 0.9em;
 	color: rgba(0, 0, 0, 0.5);
-	line-height: 1.45;
+	line-height: 1.35;
 	font-weight: 500;
 	position: relative;
-	height: 4em;
+	height: 5.5em;
 	overflow: hidden;
 	&:after {
 		content: '';
@@ -91,11 +92,13 @@ export const LocalHeadline = ({
 			<CardImage src={urlToImage} />
 			<CardBody>
 				<CardTitle href={url}>
-					{title.length > 100 ? title.substring(0, 100) + '...' : title}
+					{title.length > 85 ? title.substring(0, 85) + '...' : title}
 				</CardTitle>
 				<CardText>{description}</CardText>
 				<PostMeta>
-					{author.length > 22 ? author.substring(0, 22) + '...' : author}
+					{author.length > 22
+						? author.substring(0, 22) + '...'
+						: author}
 					<span>{getArticleTime(publishedAt, 'headline')}</span>
 				</PostMeta>
 			</CardBody>

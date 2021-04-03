@@ -28,10 +28,10 @@ export const getHeadlines = async (country, q, pageSize, page) => {
 	return result
 }
 
-export const getEverything = async (q, pageSize, page) => {
+export const getEverything = async (q, source = '', pageSize, page) => {
 	const result = await axios
 		.get(
-			`everything/?q=${q}&pageSize=${pageSize}&page=${page}&apiKey=${apiKey}`,
+			`everything/?q=${q}&sources=${source}&pageSize=${pageSize}&page=${page}&apiKey=${apiKey}`,
 		)
 		.then(({ data }) => data)
 		.catch(err => console.log(err))

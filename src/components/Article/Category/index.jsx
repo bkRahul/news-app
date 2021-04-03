@@ -82,12 +82,17 @@ const Card = styled.div`
 		grid-row-end: span 6;
 
 		${CardImage} {
-			filter: blur(1px) grayscale(20%);
+			filter: blur(1px);
+			background-image: linear-gradient(
+					to bottom,
+					rgba(0, 0, 0, 0.7),
+					rgba(0, 0, 0, 0.4) 130px
+				),
+				url(${props => props.urlToImage});
 		}
 		${CardBody} {
 			position: absolute;
 			color: #fff;
-			text-shadow: 1px 0 0 #000;
 		}
 		${CardTitle} {
 			color: inherit;
@@ -117,7 +122,7 @@ export const Category = ({
 	urlToImage,
 }) => {
 	return (
-		<Card>
+		<Card urlToImage={urlToImage}>
 			<CardImage urlToImage={urlToImage} />
 			<CardBody>
 				<CardTitle href={url}>

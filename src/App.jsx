@@ -9,6 +9,11 @@ export const App = () => {
 			<Switch>
 				<Route path='/' exact component={HomeContent} />
 				<Route path='/:category' exact component={CategoryPage} />
+				<Route
+					path='/:category/:source'
+					exact
+					component={CategoryPage}
+				/>
 			</Switch>
 		</WithLayout>
 	)

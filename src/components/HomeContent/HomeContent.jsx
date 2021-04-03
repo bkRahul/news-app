@@ -1,13 +1,12 @@
 import React from 'react'
-
+import { HomeTags } from './HomeTags'
 import { LocalHeadlines } from './LocalHeadlines'
-import { Tags } from './Tags'
 
-export const HomeContent = () => {
+export const HomeContent = props => {
 	return (
 		<>
 			<LocalHeadlines />
-			<Tags />
+			<HomeTags {...props} />
 		</>
 	)
 }
