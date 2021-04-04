@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { getCleanInputs } from '../../../utils'
 
 const TagsWrapper = styled.div`
 	display: flex;
@@ -64,9 +65,13 @@ export const Tags = ({ tags, type, history, match }) => {
 						type={type}
 						onClick={() => {
 							type === 'home'
-								? history.push(`${item.toLowerCase()}`)
+								? history.push(
+										`${getCleanInputs(item).toLowerCase()}`,
+								  )
 								: history.push(
-										`${match.url}/${item.toLowerCase()}`,
+										`${match.url}/${getCleanInputs(
+											item,
+										).toLowerCase()}`,
 								  )
 						}}
 						key={item}

@@ -62,3 +62,7 @@ export const getNonEmptyFields = data => {
 		},
 	)
 }
+
+export const getCleanInputs = (data = '') => {
+	return data.split('.')[0].replace(/\s/g, '-')
+}

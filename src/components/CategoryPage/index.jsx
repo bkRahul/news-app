@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { withGridLayout as WithGridLayout } from '../../hoc/GridLayout/withGridLayout'
 import { withSectionWrap as WithSectionWrap } from '../../hoc/SectionWrap/withSectionWrap'
 import { getEverything } from '../../services/newsApi'
-import { getNonEmptyFields } from '../../utils'
+import { getCleanInputs, getNonEmptyFields } from '../../utils'
 import { Category } from '../Article/Category'
 import { MaskedBg } from '../SharedComponents/MaskedBg/MaskedBg'
 import { Button } from '../SharedComponents/Button/Button'
 import { Tags } from '../SharedComponents/Tags/Tags'
 
 export const CategoryPage = props => {
-	const { category, source } = props.match.params
+	let { category, source } = props.match.params
+	console.log({ category, source })
+	category = getCleanInputs(category)
+	source = getCleanInputs(source)
 
 	const [page, setPage] = useState(1)
 	const [pageSize, setPageSize] = useState(20)
