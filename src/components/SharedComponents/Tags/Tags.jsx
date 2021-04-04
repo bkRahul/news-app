@@ -53,12 +53,13 @@ const TagLink = styled.div`
 `
 
 export const Tags = ({ tags, type, history, match }) => {
+	tags = type !== 'home' ? [...tags].slice(0, 7) : [...tags]
+
 	return (
 		<TagsWrapper type={type}>
 			{type !== 'home' && <Title>Top Publications</Title>}
-
 			<div>
-				{[...tags].map(item => (
+				{tags.map(item => (
 					<TagLink
 						type={type}
 						onClick={() => {

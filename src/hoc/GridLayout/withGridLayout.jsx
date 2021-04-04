@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styled from 'styled-components'
-import { LaptopWidth } from '../../components/CommonStyles'
+import { LaptopWidth } from '../../components/SharedStyles'
 
 const GridWrapper = styled(LaptopWidth)`
 	display: grid;
