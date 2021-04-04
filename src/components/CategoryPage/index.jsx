@@ -4,10 +4,15 @@ import { withSectionWrap as WithSectionWrap } from '../../hoc/SectionWrap/withSe
 import { getEverything } from '../../services/newsApi'
 import { getNonEmptyFields } from '../../utils'
 import { Category } from '../Article/Category'
+import { MaskedBg } from '../SharedComponents/MaskedBg/MaskedBg'
+import { Button } from '../SharedComponents/Button/Button'
 import { Tags } from '../SharedComponents/Tags/Tags'
 
 export const CategoryPage = props => {
 	const { category, source } = props.match.params
+
+	const [page, setPage] = useState(1)
+	const [pageSize, setPageSize] = useState(20)
 
 	const [categoryArticles, setCategoryArticles] = useState([])
 	let [sourceTags, setSourceTags] = useState([])
@@ -15,7 +20,7 @@ export const CategoryPage = props => {
 
 	useEffect(() => {
 		setLoading(true)
-		getEverything(category, source)
+		getEverything(category, source, pageSize, page)
 			.then(({ articles }) => {
 				console.log(articles)
 				setCategoryArticles(articles)
@@ -27,11 +32,11 @@ export const CategoryPage = props => {
 				console.log(err)
 				setLoading(false)
 			})
-	}, [category, source])
+	}, [category, source, pageSize, page])
 
 	return (
 		<WithSectionWrap>
-			<Tags tags={sourceTags} {...props} />
+			{!source && <Tags tags={sourceTags} {...props} />}
 			<WithGridLayout isCategory>
 				{!!loading
 					? 'Loading'
@@ -39,6 +44,17 @@ export const CategoryPage = props => {
 							return <Category {...article} key={article.title} />
 					  })}
 			</WithGridLayout>
+			{!loading && (
+				<MaskedBg>
+					<Button
+						click={() => {
+							setPage(page + 1)
+							//							setPageSize(pageSize + 20)
+						}}
+						text='Show More'
+					/>
+				</MaskedBg>
+			)}
 		</WithSectionWrap>
 	)
 }

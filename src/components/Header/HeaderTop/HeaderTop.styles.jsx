@@ -7,7 +7,7 @@ import {
 	FaLinkedinIn,
 	FaSearch,
 } from 'react-icons/fa'
-import { LaptopWidth } from '../../CommonStyles'
+import { LaptopWidth } from '../../SharedStyles'
 
 export const Wrapper = styled(LaptopWidth)`
 	display: flex;
