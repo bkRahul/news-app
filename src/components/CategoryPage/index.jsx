@@ -7,6 +7,7 @@ import { Category } from '../Article/Category'
 import { MaskedBg } from '../SharedComponents/MaskedBg/MaskedBg'
 import { Button } from '../SharedComponents/Button/Button'
 import { Tags } from '../SharedComponents/Tags/Tags'
+import { MAX_ARTICLES, PAGE_SIZE } from '../../constants'
 
 export const CategoryPage = props => {
 	let { category, source } = props.match.params
@@ -15,44 +16,43 @@ export const CategoryPage = props => {
 	source = getCleanInputs(source)
 
 	const [page, setPage] = useState(1)
-	const [pageSize, setPageSize] = useState(20)
-
+	const [count, setCount] = useState(PAGE_SIZE)
 	const [categoryArticles, setCategoryArticles] = useState([])
 	let [sourceTags, setSourceTags] = useState([])
 	const [loading, setLoading] = useState(false)
 
 	useEffect(() => {
 		setLoading(true)
-		getEverything(category, source, pageSize, page)
+		getEverything(category, source, page)
 			.then(({ articles }) => {
 				console.log(articles)
-				setCategoryArticles(articles)
+				setCategoryArticles(categoryArticles => [
+					...categoryArticles,
+					...articles,
+				])
 				setSourceTags(new Set(articles.map(item => item.source.name)))
 				setLoading(false)
 			})
-			.then()
 			.catch(err => {
 				console.log(err)
 				setLoading(false)
 			})
-	}, [category, source, pageSize, page])
+	}, [category, source, page])
 
 	return (
 		<WithSectionWrap>
 			{!source && <Tags tags={sourceTags} {...props} />}
 			<WithGridLayout isCategory>
-				{!!loading
-					? 'Loading'
-					: getNonEmptyFields(categoryArticles).map(article => {
-							return <Category {...article} key={article.title} />
-					  })}
+				{getNonEmptyFields(categoryArticles).map(article => {
+					return <Category {...article} key={article.title} />
+				})}
 			</WithGridLayout>
-			{!loading && (
+			{!loading && count <= MAX_ARTICLES && (
 				<MaskedBg>
 					<Button
 						click={() => {
 							setPage(page + 1)
-							//							setPageSize(pageSize + 20)
+							setCount(count + PAGE_SIZE)
 						}}
 						text='Show More'
 					/>

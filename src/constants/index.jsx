@@ -11,3 +11,7 @@ export const tagList = [
 	'self',
 	'vacation',
 ]
+
+export const MAX_ARTICLES = 100
+
+export const PAGE_SIZE = 20

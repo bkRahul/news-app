@@ -86,7 +86,7 @@ const Card = styled.div`
 			background-image: linear-gradient(
 					to bottom,
 					rgba(0, 0, 0, 0.7),
-					rgba(0, 0, 0, 0.4) 130px
+					rgba(0, 0, 0, 0.3) 130px
 				),
 				url(${props => props.urlToImage});
 		}

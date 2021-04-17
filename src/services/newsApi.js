@@ -18,7 +18,7 @@ export const getLocalHeadlines = async country => {
 	return result
 }
 
-export const getHeadlines = async (country, q, pageSize, page) => {
+export const getHeadlines = async (country, q, page, pageSize) => {
 	const result = await axios
 		.get(
 			`top-headlines/?country=${country}&q=${q}&pageSize=${pageSize}&page=${page}&apiKey=${apiKey}`,
@@ -28,7 +28,7 @@ export const getHeadlines = async (country, q, pageSize, page) => {
 	return result
 }
 
-export const getEverything = async (q, source = '', pageSize, page) => {
+export const getEverything = async (q, source = '', page, pageSize) => {
 	const result = await axios
 		.get(
 			`everything/?q=${q}&sources=${source}&pageSize=${pageSize}&page=${page}&apiKey=${apiKey}`,
